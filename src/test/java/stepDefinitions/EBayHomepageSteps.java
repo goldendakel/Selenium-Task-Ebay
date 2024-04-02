@@ -1,16 +1,16 @@
-package testPages;
+package stepDefinitions;
 
 import static org.testng.Assert.*;
 import java.io.FileReader;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+import pages.EBayHomepage;
+import utils.SeleniumHelper;
 
-public class EBayHomepage extends SeleniumHelper {
-
+public class EBayHomepageSteps extends SeleniumHelper {
+    
     @Given("the user is on eBay homepage {string}")
     public void the_user_is_on_eBay_homepage(String userKey) {
 
@@ -35,12 +35,15 @@ public class EBayHomepage extends SeleniumHelper {
         assertEquals(actualUrl, expectedUrl, "Page URL doesn't match expected URL");
     }
 
-
     @Given("the user accepts all cookies")
     public void the_user_accepts_all_cookies() {
-       WebElement cookiesConsentButton = wait.get().until(ExpectedConditions.elementToBeClickable(By.id("gdpr-banner-accept")));
-       xJs("arguments[0].click();", cookiesConsentButton);
+        EBayHomepage.acceptAllCookies();
     }
 
-
+    //Select from drop down list “Toys”
+    @When("the user navigates to the 'Toys' category")
+    public void the_user_navigates_to_the_Toys_category() {
+        EBayHomepage.navigateToysCategory();
+    }
+    
 }

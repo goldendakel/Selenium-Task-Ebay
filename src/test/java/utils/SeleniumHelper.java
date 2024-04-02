@@ -1,4 +1,4 @@
-package testPages;
+package utils;
 
 
 import org.openqa.selenium.JavascriptExecutor;

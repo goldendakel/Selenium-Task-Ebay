@@ -6,7 +6,7 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
     features = "src/test/resources/features/addProductToCartEBay.feature",
-    glue = {"testPages"},
+    glue = {"pages", "utils", "stepDefinitions"},
     publish = true,
     plugin = {
         "pretty",
