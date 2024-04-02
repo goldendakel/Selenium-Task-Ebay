@@ -1,36 +1,21 @@
-package testPages;
+package pages;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import io.cucumber.java.en.When;
+import commonElements.eBayCommonElements;
+import utils.SeleniumHelper;
 
 public class EBayPLP extends SeleniumHelper {
     
-    //Select from drop down list “Toys &amp; Games”
-    @When("the user navigates to the 'Toys' category")
-    public void the_user_navigates_to_the_Toys_category() {
-        WebElement homeAndGardenCategory = wait.get().until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@data-currenttabindex='7']//a")));
-        getActions().moveToElement(homeAndGardenCategory).perform();
-        WebElement toysCategory = wait.get().until(ExpectedConditions.elementToBeClickable(By.xpath("(//a[@href='https://www.ebay.com/b/Toys-Hobbies/220/bn_1865497'])[2]")));
-        toysCategory.click();
+    public static void searchMonopoly() {
+        eBayCommonElements.getSearchBar().sendKeys("Monopoly");
+        eBayCommonElements.getSearchButton().click();
     }
 
-    //Then search for Monopoly
-    @When("the user searches for 'Monopoly'")
-    public void the_user_searches_for_Monopoly() {
-        WebElement searchBar = wait.get().until(ExpectedConditions.elementToBeClickable(By.id("gh-ac")));
-        searchBar.sendKeys("Monopoly");
-        WebElement searchButton = wait.get().until(ExpectedConditions.elementToBeClickable(By.id("gh-btn")));
-        searchButton.click();
-    }
-
-
-    @When("the user selects one of the Monopoly Products")
-    
-    public void the_user_selects_one_of_the_Monopoly_Products() {
+    public static void selectMonopolyProduct() {
 
         //Verify that the first items has the title: Monopoly
         List<WebElement> monopolyProducts = new ArrayList<>();
@@ -122,5 +107,10 @@ public class EBayPLP extends SeleniumHelper {
     public static String getPriceProduct3() {
         return priceProduct3PLP;
     }
+
+
+  
+
+
 
 }
