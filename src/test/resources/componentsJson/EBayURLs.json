@@ -2,5 +2,8 @@
 {
   "eBay_Homepage": {
     "eBay_Homepage_URL": "https://www.ebay.com/"
+  },
+  "eBay_Cartpage": {
+    "eBay_Cartpage_URL": "https://cart.payments.ebay.com/"
   }
 }

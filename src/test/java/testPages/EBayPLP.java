@@ -2,7 +2,6 @@ package testPages;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,8 +9,7 @@ import io.cucumber.java.en.When;
 
 public class EBayPLP extends SeleniumHelper {
     
-    
-    
+    //Select from drop down list “Toys &amp; Games”
     @When("the user navigates to the 'Toys' category")
     public void the_user_navigates_to_the_Toys_category() {
         WebElement homeAndGardenCategory = wait.get().until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@data-currenttabindex='7']//a")));
@@ -20,7 +18,7 @@ public class EBayPLP extends SeleniumHelper {
         toysCategory.click();
     }
 
-
+    //Then search for Monopoly
     @When("the user searches for 'Monopoly'")
     public void the_user_searches_for_Monopoly() {
         WebElement searchBar = wait.get().until(ExpectedConditions.elementToBeClickable(By.id("gh-ac")));
@@ -29,10 +27,12 @@ public class EBayPLP extends SeleniumHelper {
         searchButton.click();
     }
 
+
     @When("the user selects one of the Monopoly Products")
     
     public void the_user_selects_one_of_the_Monopoly_Products() {
 
+        //Verify that the first items has the title: Monopoly
         List<WebElement> monopolyProducts = new ArrayList<>();
         
         WebElement monopolyProductFirst = wait.get().until(ExpectedConditions.elementToBeClickable(By.xpath("(//span[@role='heading'])[2]")));
@@ -53,11 +53,12 @@ public class EBayPLP extends SeleniumHelper {
                 verifyPriceProduct3(monopolyProduct);
             }
         }
+        //Then click on the first item in order to navigate to details page
         monopolyProductFirst.click();
     }
 
     
-    
+    //Verify that there is a shipping to : Bulgaria
     public static void verifyProductNameAndShipping(WebElement monopolyProduct){
         String productName = monopolyProduct.getText();
         if(productName.contains("Monopoly")) {
@@ -70,49 +71,56 @@ public class EBayPLP extends SeleniumHelper {
         }
     }
 
-    private static String priceProduct1;
+    //Verify that there is a price of the item
+    private static String priceProduct1PLP;
 
-    public static void verifyPriceProduct1(WebElement monopolyProduct){
-        WebElement priceProduct1 = wait.get().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[@class='s-item__price'])[2]")));
-        String priceProduct1inDollars = priceProduct1.getText();
-        if(priceProduct1.isDisplayed()) {
-            logger.info("First Product displays with price: {}", priceProduct1inDollars);
+    public static void verifyPriceProduct1(WebElement monopolyProduct) {
+        WebElement priceProduct1PlpElement = wait.get().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[@class='s-item__price'])[2]")));
+        String priceProduct1inDollars = priceProduct1PlpElement.getText().replaceAll("[^\\d.,]", "");
+        
+        if (priceProduct1PlpElement.isDisplayed()) {
+            logger.info("First Product displays with price: ${}", priceProduct1inDollars);
         } else {
             logger.info("Product doesn't have price");
         }
+            priceProduct1PLP = priceProduct1inDollars;
     }
+
     public static String getPriceProduct1() {
-        return priceProduct1;
+        return priceProduct1PLP;
     }
 
-
-    private static String priceProduct2;
+    private static String priceProduct2PLP;
 
     public static void verifyPriceProduct2(WebElement monopolyProduct){
-        WebElement priceProduct2 = wait.get().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[@class='s-item__price'])[3]")));
-        String priceProduct2inDollars = priceProduct2.getText();
-        if(priceProduct2.isDisplayed()) {
-            logger.info("Second Product displays with price: {}", priceProduct2inDollars);
+        WebElement priceProduct2PLPElement = wait.get().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[@class='s-item__price'])[3]")));
+        String priceProduct2inDollars = priceProduct2PLPElement.getText().replaceAll("[^\\d.,]", "");
+        if(priceProduct2PLPElement.isDisplayed()) {
+            logger.info("Second Product displays with price: ${}", priceProduct2inDollars);
         } else {
             logger.info("Product doesn't have price");
         }
+        priceProduct2PLP = priceProduct2inDollars;
+
     }
     public static String getPriceProduct2() {
-        return priceProduct2;
+        return priceProduct2PLP;
     }
 
-    private static String priceProduct3;
+    private static String priceProduct3PLP;
 
     public static void verifyPriceProduct3(WebElement monopolyProduct){
-        WebElement priceProduct3 = wait.get().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[@class='s-item__price'])[4]")));
-        String priceProduct3inDollars = priceProduct3.getText();
-        if(priceProduct3.isDisplayed()) {
-            logger.info("Third Product displays with price: {}", priceProduct3inDollars);
+        WebElement priceProduct3PLPElement = wait.get().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[@class='s-item__price'])[4]")));
+        String priceProduct3inDollars = priceProduct3PLPElement.getText().replaceAll("[^\\d.,]", "");
+        if(priceProduct3PLPElement.isDisplayed()) {
+            logger.info("Third Product displays with price: ${}", priceProduct3inDollars);
         } else {
             logger.info("Product doesn't have price");
         }
+        priceProduct3PLP = priceProduct3inDollars;
     }
     public static String getPriceProduct3() {
-        return priceProduct3;
+        return priceProduct3PLP;
     }
+
 }

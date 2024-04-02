@@ -17,14 +17,17 @@ public class Browser extends SeleniumHelper {
 
         ChromeOptions chromeOptions = new ChromeOptions();
 
+            //Open Chrome in Incognito mode
         chromeOptions.addArguments("--incognito");
-        // chromeOptions.addArguments("headless", "--disable-gpu", "disable-infobars", "--disable-extensions", "--no-sandbox", "--window-size=1920,1080", --disable-dev-shm-usage");
-        chromeOptions.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36");
+            //Hide the "chrome is controlled by automated test software"
         chromeOptions.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
+            //Unable to Accept the Cookies in headless. The option is turned off
+        //chromeOptions.addArguments("headless", "--disable-gpu", "disable-infobars", "--disable-extensions", "--no-sandbox", "--window-size=1920,1080", "--disable-dev-shm-usage");
+        
         WebDriver driverInstance = ThreadGuard.protect(new ChromeDriver(chromeOptions));
         ThreadGuard.protect(driverInstance);
         SeleniumHelper.driver.set(driverInstance);
-        wait.set(new WebDriverWait(driverInstance, Duration.ofSeconds(15)));
+        wait.set(new WebDriverWait(driverInstance, Duration.ofSeconds(7)));
         driverInstance.manage().window().maximize();
 
     }

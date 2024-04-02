@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-    features = "src/test/resources/features/00_Sandbox/0_Sandbox.feature",
+    features = "src/test/resources/features/addProductToCartEBay.feature",
     glue = {"testPages"},
     publish = true,
     plugin = {

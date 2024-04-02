@@ -14,8 +14,6 @@ public class SeleniumHelper {
     protected static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static ThreadLocal<WebDriverWait> wait = new ThreadLocal<>();
     
-
-
     public static WebDriver getDriver() {
         return driver.get();
     }
@@ -24,7 +22,6 @@ public class SeleniumHelper {
         return new Actions(getDriver());
     }
 
-
     public static void xJs(String script, Object... args) {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript(script, args);
@@ -32,6 +29,4 @@ public class SeleniumHelper {
 
     public static final Logger logger = LoggerFactory.getLogger(SeleniumHelper.class);
     
-
-
 }
