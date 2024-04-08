@@ -1,10 +1,12 @@
 
-Visual Studio requires extension to read Cucumber/Gherkin:
-Reqnroll for Visual Studio 2022
+Visual Studio/ VSCode require extension to read Cucumber/Gherkin
 
+Tests can run without Maven via righ-click on the RunCucumberIT class
 
+With Maven - 
 Maven Test execution command:
 //Cleans the "logs" and "allure-results" folders. New folders/files generate on every execution with the mvn command
+Command:
 mvn clean test -Dtest=runner.RunCucumberIT
 
 
